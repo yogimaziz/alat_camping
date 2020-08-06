@@ -15,7 +15,7 @@ class CreateSewaTable extends Migration
     {
         Schema::create('sewa', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('admin_id')->index('admin_id_foreign');
+            $table->integer('user_id')->index('user_id_foreign');
             $table->integer('penyewa_id')->index('penyewa_id_foreign');
             $table->integer('barang_id')->index('barang_id_foreign');
             $table->string('tanggal_sewa', 100);

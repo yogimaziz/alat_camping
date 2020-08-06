@@ -14,7 +14,7 @@ class UsersController extends Controller
     {
         $acceptHeader = $request->header('Accept');
         if ($acceptHeader === 'application/json' || $acceptHeader === 'application/xml') {
-            if (Gate::denies('read-users')) {
+            if (Gate::denies('only-admin')) {
                 return response()->json([
                     'success' => false,
                     'status'  => 403,
@@ -26,7 +26,7 @@ class UsersController extends Controller
                 'name'      => 'required|min:5',
                 'email'     => 'required|email|unique:users',
                 'password'  => 'required|min:5|confirmed',
-                'role' => 'required|in:admin,petugas'
+                'role'      => 'required|in:admin,petugas'
             ];
             $validator = \Validator::make($input, $validationRules);
             if ($validator->fails()) {
@@ -46,10 +46,9 @@ class UsersController extends Controller
  
     public function index(Request $request)
     {
-
         $acceptHeader = $request->header('Accept');
         if ($acceptHeader === 'application/json' || $acceptHeader === 'application/xml') {
-            if (Gate::denies('read-users')) {
+            if (Gate::denies('only-admin')) {
                 return response()->json([
                     'success' => false,
                     'status'  => 403,
@@ -76,7 +75,7 @@ class UsersController extends Controller
     {
         $acceptHeader = $request->header('Accept');
         if ($acceptHeader === 'application/json' || $acceptHeader === 'application/xml') {
-            if (Gate::denies('read-users')) {
+            if (Gate::denies('only-admin')) {
                 return response()->json([
                     'success' => false,
                     'status'  => 403,
@@ -97,7 +96,7 @@ class UsersController extends Controller
     {
         $acceptHeader = $request->header('Accept');
         if ($acceptHeader === 'application/json' || $acceptHeader === 'application/xml') {
-            if (Gate::denies('read-users')) {
+            if (Gate::denies('only-admin')) {
                 return response()->json([
                     'success' => false,
                     'status'  => 403,
@@ -121,7 +120,7 @@ class UsersController extends Controller
     {
         $acceptHeader = $request->header('Accept');
         if ($acceptHeader === 'application/json' || $acceptHeader === 'application/xml') {
-            if (Gate::denies('read-users')) {
+            if (Gate::denies('only-admin')) {
                 return response()->json([
                     'success' => false,
                     'status'  => 403,
